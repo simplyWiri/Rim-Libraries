@@ -13,7 +13,7 @@ namespace Libraries
         // for access to bookshelves
         private Dictionary<IntVec3, Building_Bookcase> bookcases = new Dictionary<IntVec3, Building_Bookcase>();
 
-        public List<Book> books = new List<Book>();
+        public HashSet<Book> books = new HashSet<Book>();
 
         public MapComponent_Library(Map map) : base(map)
         {
@@ -22,6 +22,12 @@ namespace Libraries
         public Book RandomBookForRecreation()
         {
             return books.RandomElement();
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref books, "Books");
         }
     }
 }
