@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>RimLibraries</name>
+	<author>some book</author>
+  <supportedVersions>
+    <li>1.1</li>
+  </supportedVersions>
+  <packageId>book.library</packageId>
+  <modDependencies>
+  </modDependencies>
+  <description>
+  I heard you like libraries with dust in em, so I made a library, and put dust in it!
+ </description>
+</ModMetaData>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <RecipeDef>
+        <defName>RL_SkillBook</defName>
+        <label>make patchleather</label>
+        <description>Combine various types of leather to create weak patchleather.</description>
+        <jobString>Making patchleather.</jobString>
+        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+        <effectWorking>Tailor</effectWorking>
+        <soundWorking>Recipe_Tailor</soundWorking>
+        <workAmount>900</workAmount>
+        <allowMixingIngredients>true</allowMixingIngredients>
+        <targetCountAdjustment>10</targetCountAdjustment>
+        <recipeUsers>
+            <li>RL_TypeWriter</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Leathers</li>
+                    </categories>
+                </filter>
+
+                <count>10</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <categories>
+                <li>Leathers</li>
+            </categories>
+        </fixedIngredientFilter>
+        <products>
+            <RL_SkillBook>50</RL_SkillBook>
+        </products>
+        <workSkill>Crafting</workSkill>
+    </RecipeDef>
+
+</Defs>

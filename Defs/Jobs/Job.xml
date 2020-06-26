@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JobDef>
+		<defName>RL_ReadSkillBook</defName>
+		<driverClass>Libraries.Jobs.JobDriver_ReadSkillBook</driverClass>
+		<reportString>reading TargetA.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>RL_JoyRead</defName>
+		<driverClass>Libraries.Jobs.JobDriver_JoyReadBook</driverClass>
+		<reportString>joy-reading TargetA.</reportString>
+		<joyDuration>2000</joyDuration>
+		<joyKind>Gaming_Cerebral</joyKind>
+	</JobDef>
+
+</Defs>

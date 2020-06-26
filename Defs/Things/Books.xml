@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="Book" Abstract="True">
+    <category>Item</category>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>1</stackLimit>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompQuality"/>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <rotatable>false</rotatable>
+    <pathCost>15</pathCost>
+  </ThingDef>
+
+  <ThingDef>
+    <thingClass>Libraries.Books.Book_Skill</thingClass>
+    <defName>RL_SkillBook</defName>
+    <label>Journal</label>
+    <description>A scientific piece used to educate pawns about a certain topic</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/book</texPath>
+      <onGroundRandomRotateAngle>25</onGroundRandomRotateAngle>
+    </graphicData>
+    <selectable>True</selectable>
+    <useHitPoints>True</useHitPoints>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <category>Item</category>
+    <stackLimit>1</stackLimit>
+    <tradeability>None</tradeability>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Beauty>2</Beauty>
+      <Mass>0.8</Mass>
+    </statBases>
+    <pathCost>5</pathCost>
+  </ThingDef>
+
+</Defs>
