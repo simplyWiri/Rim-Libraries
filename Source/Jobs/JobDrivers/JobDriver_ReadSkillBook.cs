@@ -1,6 +1,7 @@
 ﻿using Libraries.Books;
 using RimWorld;
 using System.Collections.Generic;
+using Verse;
 using Verse.AI;
 
 namespace Libraries.Jobs

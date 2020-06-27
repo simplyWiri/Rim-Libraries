@@ -32,7 +32,7 @@
             </categories>
         </fixedIngredientFilter>
         <products>
-            <RL_SkillBook>50</RL_SkillBook>
+            <RL_SkillBook>1</RL_SkillBook>
         </products>
         <workSkill>Crafting</workSkill>
     </RecipeDef>

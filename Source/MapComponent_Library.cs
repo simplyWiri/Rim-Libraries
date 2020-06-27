@@ -27,7 +27,6 @@ namespace Libraries
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look(ref books, "Books");
         }
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <TimeAssignmentDef>
+    <defName>RL_Studying</defName>
+    <label>studying</label>
+    <color>(149, 69, 53)</color>
+    <allowRest>false</allowRest>
+    <allowJoy>false</allowJoy>
+  </TimeAssignmentDef>
+
+</Defs>

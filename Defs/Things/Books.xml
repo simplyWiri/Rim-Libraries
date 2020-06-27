@@ -3,6 +3,9 @@
 
   <ThingDef Name="Book" Abstract="True">
     <category>Item</category>
+    <thingCategories>
+      <li>Items</li>
+    </thingCategories>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>
@@ -10,7 +13,14 @@
     <stackLimit>1</stackLimit>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
-      <li Class="CompQuality"/>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li Class="CompProperties_Art">
+        <nameMaker>NamerArtFurniture</nameMaker>
+        <descriptionMaker>ArtDescription_Furniture</descriptionMaker>
+        <minQualityForArtistic>Good</minQualityForArtistic>
+      </li>
     </comps>
     <alwaysHaulable>true</alwaysHaulable>
     <drawGUIOverlay>true</drawGUIOverlay>
@@ -18,7 +28,7 @@
     <pathCost>15</pathCost>
   </ThingDef>
 
-  <ThingDef>
+  <ThingDef ParentName="Book">
     <thingClass>Libraries.Books.Book_Skill</thingClass>
     <defName>RL_SkillBook</defName>
     <label>Journal</label>
