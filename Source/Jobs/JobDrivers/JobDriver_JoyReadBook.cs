@@ -14,6 +14,8 @@ namespace Libraries.Jobs
 
         public override IEnumerable<Toil> MakeNewToils()
         {
+            this.FailOnDestroyedOrNull(TargetIndex.A);
+
             foreach (var t in Toils_Book.ReadBook(pawn, BookTarget))
             {
                 yield return t;
@@ -33,7 +35,7 @@ namespace Libraries.Jobs
                 if (BookTarget is Book_Skill)
                 {
                     var skillbook = BookTarget as Book_Skill;
-                    actor.skills.Learn(skillbook.SkillDef, 0.07f * skillbook.CurrentMultiplier());
+                    actor.skills.Learn(skillbook.SkillDef, 0.07f * skillbook.CurrentMultiplier() * Libraries.Settings.SkillBookSkillGainMultiplier);
                 }
 
                 curReadTicks++;

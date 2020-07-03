@@ -22,12 +22,13 @@ namespace Libraries.Jobs
             Toil toil = new Toil();
             toil.tickAction = () =>
             {
-                pawn.skills.Learn(BookTarget.SkillDef, 0.07f * BookTarget.CurrentMultiplier());
+                pawn.skills.Learn(BookTarget.SkillDef, 0.07f * BookTarget.CurrentMultiplier() * Libraries.Settings.SkillBookSkillGainMultiplier);
 
                 curReadTicks++;
                 if (curReadTicks > defaultReadTicks)
                     ReadyForNextToil();
             };
+
             toil.defaultCompleteMode = ToilCompleteMode.Never;
             toil.activeSkill = () => SkillDefOf.Intellectual;
             toil.WithProgressBar(TargetIndex.A, () => curReadTicks / (float)defaultReadTicks);

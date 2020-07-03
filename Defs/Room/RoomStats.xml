@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <RoomStatDef>
+        <defName>RL_Grandeur</defName>
+        <label>grandeur</label>
+        <workerClass>Libraries.Rooms.RoomStatWorker_Grandeur</workerClass>
+        <updatePriority>2</updatePriority>
+        <displayRounded>true</displayRounded>
+        <roomlessScore>350</roomlessScore>
+        <scoreStages>
+            <li>
+                <label>something to be changed</label>
+            </li>
+            <li>
+                <minScore>75</minScore>
+                <label>im not creative enough for this </label>
+            </li>
+            <li>
+                <minScore>100</minScore>
+                <label>somewhat-impressive</label>
+            </li>
+            <li>
+                <minScore>250</minScore>
+                <label>a spectacle</label>
+            </li>
+            <li>
+                <minScore>400</minScore>
+                <label>a site to behold</label>
+            </li>
+            <li>
+                <minScore>600</minScore>
+                <label>an incredible space</label>
+            </li>
+            <li>
+                <minScore>1000</minScore>
+                <label>grandiose</label>
+            </li>
+        </scoreStages>
+    </RoomStatDef>
+
+    <RoomStatDef>
+        <defName>RL_StudyEnvironment</defName>
+        <label>study efficiency factor</label>
+        <workerClass>Libraries.Rooms.RoomStatWorker_Study</workerClass>
+        <updatePriority>0</updatePriority>
+        <isHidden>true</isHidden>
+    </RoomStatDef>
+
+</Defs>

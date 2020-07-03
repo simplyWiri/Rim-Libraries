@@ -1,9 +1,13 @@
-﻿using Verse;
+﻿using UnityEngine;
+using Verse;
 
 namespace Libraries
 {
     public class Libraries : Mod
     {
+        public static Settings Settings;
+
+
         private HarmonyLib.Harmony harmony;
 
         public HarmonyLib.Harmony Instance
@@ -18,7 +22,19 @@ namespace Libraries
 
         public Libraries(ModContentPack modContent) : base(modContent)
         {
+            Settings = GetSettings<Settings>();
+
             Instance.PatchAll();
+        }
+
+        public override string SettingsCategory()
+        {
+            return "Rim Libraries";
+        }
+
+        public override void DoSettingsWindowContents(Rect rect)
+        {
+            Settings.ShowWindowContents(rect);
         }
     }
 }

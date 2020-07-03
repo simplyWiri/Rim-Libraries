@@ -12,10 +12,7 @@ namespace Libraries.Jobs
 {
     public class WorkGiver_HaulBookToShelf : WorkGiver_Scanner
     {
-        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
-        {
-            return pawn.Map.listerThings.AllThings.FindAll(x => x is Book);
-        }
+        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.GetComponent<MapComponent_Library>().HaulableBooks;
 
         public override PathEndMode PathEndMode => PathEndMode.ClosestTouch;
 
@@ -24,14 +21,7 @@ namespace Libraries.Jobs
             Book book = t as Book;
             if (!HaulAIUtility.PawnCanAutomaticallyHaul(pawn, t, forced)) return null;
 
-            var building = GenClosest.ClosestThing_Global_Reachable(
-                book.Position,
-                pawn.Map,
-                pawn.Map.listerThings.AllThings.FindAll(x => x is Building_InternalStorage),
-                PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn, false),
-                9999f,
-                (Thing m) => !m.IsForbidden(pawn) && pawn.CanReserveNew(m) && ((Building_InternalStorage)m).Accepts(book));
+            var building = ClosestStorage(pawn, t);
 
             if (building == null)
             {
@@ -40,6 +30,30 @@ namespace Libraries.Jobs
             }
 
             return JobMaker.MakeJob(LibraryJobDefOf.RL_HaulBookToShelf, book, building);
+        }
+
+
+        // pretty much vanilla's implementating, bar skinning a few checks which are never relevant
+        public Building_InternalStorage ClosestStorage(Pawn p, Thing t)
+        {
+            float closestDst = float.MaxValue;
+            var parms = TraverseParms.For(p, Danger.Deadly, TraverseMode.ByPawn, false);
+            Building_InternalStorage closest = null;
+
+            foreach (var thing in p.Map.GetComponent<MapComponent_Library>().bookcases)
+            {
+                if (!thing.Value.Spawned) continue;
+                if (!(p.CanReserve(thing.Value) && thing.Value.Accepts(t))) continue;
+
+                float sqr = (t.Position - thing.Key).LengthHorizontalSquared;
+                if (!(sqr < closestDst)) continue;
+
+                if (p.Map.reachability.CanReach(t.Position, thing.Value, PathEndMode.ClosestTouch, parms))
+                    closest = thing.Value;
+
+            }
+
+            return closest;
         }
     }
 }

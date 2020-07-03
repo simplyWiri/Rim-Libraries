@@ -2,15 +2,15 @@
 <Defs>
 
   <RoomRoleDef>
-    <defName>wokLibrary</defName>
+    <defName>RL_Library</defName>
     <label>library</label>
-    <workerClass>Libraries.RoomRoleWorker_Library</workerClass>
+    <workerClass>Libraries.Rooms.RoomRoleWorker_Library</workerClass>
     <relatedStats>
       <li>Beauty</li>
       <li>Cleanliness</li>
       <li>Wealth</li>
       <li>Space</li>
-      <li>Impressiveness</li>
+      <li>RL_Grandeur</li>
     </relatedStats>
   </RoomRoleDef>
 

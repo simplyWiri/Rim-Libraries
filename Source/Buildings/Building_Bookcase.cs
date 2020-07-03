@@ -9,6 +9,35 @@ namespace Libraries.Buildings
 {
     public class Building_Bookcase : Building_InternalStorage
     {
+        public float dust = 0f;
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            map.GetComponent<MapComponent_Library>().RegisterBookshelf(this);
+        }
+
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            Map.GetComponent<MapComponent_Library>().DeRegisterBookshelf(this);
+            base.DeSpawn(mode);
+        }
+        public void AddDust(float dustAmount)
+        {
+            dust += dust * Libraries.Settings.DustIncrementMultiplier;
+        }
+
+        public void CleanDust(out float timeTaken)
+        {
+            // 5 ticks per full number of dust, whatever that ends up being
+            timeTaken = dust * 5;
+        }
+
+        public bool Dusty()
+        {
+            return !Libraries.Settings.DustyBookshelves || dust > Libraries.Settings.DustyBookshelfThreshold;
+        }
+
         public override string GetInspectString()
         {
             StringBuilder s = new StringBuilder();

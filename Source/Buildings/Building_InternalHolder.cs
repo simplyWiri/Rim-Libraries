@@ -55,6 +55,7 @@ namespace Libraries.Buildings
             {
                 Thing outThing;
                 innerContainer.TryDrop(item, ThingPlaceMode.Near, out outThing);
+                Map.GetComponent<MapComponent_Library>().BookHaulablesDirty = true;
                 if (forbid) outThing.SetForbidden(true);
                 return true;
             }

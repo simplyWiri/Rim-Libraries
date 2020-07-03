@@ -107,9 +107,13 @@
     <Compile Include="Jobs\JoyGivers\JoyGiver_ReadBook.cs" />
     <Compile Include="Libraries.cs" />
     <Compile Include="MapComponent_Library.cs" />
-    <Compile Include="RoomRoleWorker_Library.cs" />
+    <Compile Include="Rooms\RoomRoleWorker_Library.cs" />
     <Compile Include="Books\Book.cs" />
     <Compile Include="Extensions\Room_Extensions.cs" />
+    <Compile Include="Rooms\RoomsDefOf.cs" />
+    <Compile Include="Rooms\RoomStatWorker_Grandeur.cs" />
+    <Compile Include="Rooms\RoomStatWorker_Study.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

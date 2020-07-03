@@ -1,7 +1,7 @@
 ﻿using Libraries.Buildings;
 using Verse;
 
-namespace Libraries
+namespace Libraries.Rooms
 {
     public class RoomRoleWorker_Library : RoomRoleWorker
     {

@@ -8,7 +8,10 @@ namespace Libraries.Jobs
     {
         public override Job TryGiveJob(Pawn pawn)
         {
-            Job tempJob = new Job(def.jobDef, pawn.Map.GetComponent<MapComponent_Library>().RandomBookForRecreation());
+            var book = pawn.Map.GetComponent<MapComponent_Library>().RandomBookForRecreation(pawn);
+            if (book == null) return null;
+
+            Job tempJob = JobMaker.MakeJob(def.jobDef, book);
             tempJob.count = 1;
             return tempJob;
         }

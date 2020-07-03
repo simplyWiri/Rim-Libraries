@@ -20,7 +20,6 @@ namespace Libraries.Jobs
             this.FailOnDestroyedNullOrForbidden(TargetIndex.B);
             this.FailOn(() => !ShelfTarget.Accepts(BookTarget));
 
-
             // goto book
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
             // pickup book
@@ -49,6 +48,7 @@ namespace Libraries.Jobs
                         }
                         // should actually update our shelf graphic here
                         pawn.carryTracker.innerContainer.Remove(BookTarget);
+                        pawn.Map.GetComponent<MapComponent_Library>().BookHaulablesDirty = true;
                     }
                 }
             };

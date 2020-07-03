@@ -24,10 +24,10 @@ namespace Libraries.Books
             return 1;
         }
 
-        public Book_Skill() : base()
+        public Book_Skill()
         {
             skillDef = SkillDefOf.Artistic;
-            Find.CurrentMap?.GetComponent<MapComponent_Library>().books.Add(this);
         }
+
     }
 }
