@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Libraries.Extensions;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,11 @@ namespace Libraries.Harmony
 #if DEBUG
             Log.Message($"[Libraries] StartOrResume: pawn {{{ pawn.Name }}} attempting to do the bill {{{ bill.Label }}} from the giver {{{giver.LabelShort}}}");
 #endif
+            if (!pawn.IsColonist) return true;
+
+            //if (pawn.CanCraftThing(bill.recipe.ProducedThingDef))
+            //    return true;
+
             JobFailReason.Is("Does not have the required knowledge");
             return false;
         }
@@ -48,11 +54,18 @@ namespace Libraries.Harmony
     [HarmonyPatch(typeof(WorkGiver_DoBill), nameof(WorkGiver_DoBill.TryStartNewDoBillJob))]
     public static class H_WorkGiver_DoBill_TryStartNew
     {
-        public static void Prefix(Pawn pawn, Bill bill, IBillGiver giver)
+        public static bool Prefix(Pawn pawn, Bill bill, IBillGiver giver)
         {
 #if DEBUG
             Log.Message($"[Libraries] TryStartNew: pawn {{{ pawn.Name }}} attempting to do the bill {{{ bill.Label }}} from the giver {{{giver.LabelShort}}}");
 #endif
+            if (!pawn.IsColonist) return true;
+
+            //if (pawn.CanCraftThing(bill.recipe.ProducedThingDef))
+            //    return true;
+
+            JobFailReason.Is("Does not have the required knowledge");
+            return false;
         }
     }
 }

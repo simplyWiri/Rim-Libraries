@@ -1,6 +1,6 @@
 ﻿namespace Libraries.Books
 {
-    internal class Book_Artifact : BookArt
+    internal class Book_Artifact : Book // art, qual
     {
     }
 }

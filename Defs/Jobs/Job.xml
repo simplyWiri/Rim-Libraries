@@ -9,6 +9,13 @@
 	</JobDef>
 
 	<JobDef>
+		<defName>RL_HaulBookToShelf</defName>
+		<driverClass>Libraries.Jobs.JobDriver_HaulToShelf</driverClass>
+		<reportString>reading TargetA.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
+	<JobDef>
 		<defName>RL_JoyRead</defName>
 		<driverClass>Libraries.Jobs.JobDriver_JoyReadBook</driverClass>
 		<reportString>joy-reading TargetA.</reportString>

@@ -39,7 +39,7 @@ namespace Libraries.Jobs
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            return pawn.Reserve(BookTarget, job, 1, -1, null, errorOnFailed);
+            return pawn.Reserve(BookTarget, job, errorOnFailed: errorOnFailed);
         }
     }
 }

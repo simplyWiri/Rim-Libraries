@@ -8,17 +8,11 @@ namespace Libraries
     public class Book : ThingWithComps
     {
         // this will be overriden as a getter in child classes
-        private Building parent = null;
-    }
+        //private Building parent = null;
 
-    public class BookQuality : Book
-    {
         private CompQuality compQuality = null;
         public CompQuality CompQuality => compQuality ??= this.TryGetComp<CompQuality>();
-    }
 
-    public class BookArt : BookQuality
-    {
         private CompArt compArt = null;
         public CompArt CompArt => compArt ??= this.TryGetComp<CompArt>();
     }

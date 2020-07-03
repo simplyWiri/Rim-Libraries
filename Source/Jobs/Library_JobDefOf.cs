@@ -7,5 +7,6 @@ namespace Libraries.Jobs
     public static class LibraryJobDefOf
     {
         public static JobDef RL_ReadSkillBook;
+        public static JobDef RL_HaulBookToShelf;
     }
 }

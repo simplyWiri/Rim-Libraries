@@ -92,21 +92,24 @@
     <Compile Include="Buildings\Building_TypeWriter.cs" />
     <Compile Include="Buildings\CompProperties_Storage.cs" />
     <Compile Include="Buildings\CompStorage.cs" />
+    <Compile Include="Extensions\Pawn_Extensions.cs" />
     <Compile Include="Harmony\H_TimeAssignmentSelector.cs" />
     <Compile Include="Harmony\H_WorkGiver_ConstructFinishFrames.cs" />
     <Compile Include="Harmony\H_WorkGiver_DoBill.cs" />
+    <Compile Include="Jobs\JobDrivers\JobDriver_HaulToShelf.cs" />
     <Compile Include="Jobs\JobDrivers\JobDriver_JoyReadBook.cs" />
     <Compile Include="Jobs\JobDrivers\JobDriver_ReadSkillBook.cs" />
     <Compile Include="Jobs\JobGivers\JobGiver_SkillBook.cs" />
     <Compile Include="Jobs\Library_JobDefOf.cs" />
     <Compile Include="Jobs\Toils_Book.cs" />
+    <Compile Include="Jobs\WorkGivers\WorkGiver_HaulBookToShelf.cs" />
     <Compile Include="Jobs\WorkGivers\WorkGiver_ReadSkillBook.cs" />
     <Compile Include="Jobs\JoyGivers\JoyGiver_ReadBook.cs" />
     <Compile Include="Libraries.cs" />
     <Compile Include="MapComponent_Library.cs" />
     <Compile Include="RoomRoleWorker_Library.cs" />
     <Compile Include="Books\Book.cs" />
-    <Compile Include="Room_Extensions.cs" />
+    <Compile Include="Extensions\Room_Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

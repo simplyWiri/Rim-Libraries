@@ -3,7 +3,7 @@
 
     <WorkGiverDef>
         <defName>RL_ReadSkillBook</defName>
-        <label>Read Skill Book</label>
+        <label>read skill book</label>
         <giverClass>Libraries.Jobs.WorkGiver_ReadSkillBook</giverClass>
         <workType>Research</workType>
         <priorityInType>20</priorityInType>
@@ -12,6 +12,19 @@
         <scanThings>true</scanThings>
         <requiredCapacities>
             <li>Sight</li>
+        </requiredCapacities>
+    </WorkGiverDef>
+
+    <WorkGiverDef>
+        <defName>RL_HaulToShelf</defName>
+        <label>haul books to shelves</label>
+        <giverClass>Libraries.Jobs.WorkGiver_HaulBookToShelf</giverClass>
+        <workType>Hauling</workType>
+        <verb>return</verb>
+        <gerund>hauling to shelf</gerund>
+        <priorityInType>70</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
         </requiredCapacities>
     </WorkGiverDef>
 

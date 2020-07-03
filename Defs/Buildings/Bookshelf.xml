@@ -42,6 +42,17 @@
         <inspectorTabs>
             <li>ITab_Storage</li>
         </inspectorTabs>
+        <building>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <fixedStorageSettings>
+                <filter>
+                    <thingDefs>
+                        <li>RL_SkillBook</li>
+                    </thingDefs>
+                </filter>
+            </fixedStorageSettings>
+        </building>
         <comps>
             <li Class="Libraries.Buildings.CompProperties_Storage"/>
         </comps>

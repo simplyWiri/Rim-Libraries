@@ -22,19 +22,14 @@ namespace Libraries.Buildings
 
         public bool TryAccept(Thing thing)
         {
-            return true;
+            return thing is Book;
         }
 
         public bool Accepts(Thing thing)
         {
-            if (!storageSettings.AllowedToAccept(thing))
-            {
-                return false;
-            }
-            if (innerContainer.Count + 1 > CompStorageGraphic.Props.fullthreshold)
-            {
-                return false;
-            }
+            if (!storageSettings.AllowedToAccept(thing)) return false;
+            if (innerContainer.Count + 1 > CompStorageGraphic.Props.fullthreshold) return false;
+            
             return true;
         }
 
@@ -43,9 +38,8 @@ namespace Libraries.Buildings
             base.PostMake();
             storageSettings = new StorageSettings(this);
             if (def.building.defaultStorageSettings != null)
-            {
                 storageSettings.CopyFrom(def.building.defaultStorageSettings);
-            }
+            
         }
 
         public override void ExposeData()
@@ -57,10 +51,10 @@ namespace Libraries.Buildings
 
         public bool TryDrop(Thing item, bool forbid = true)
         {
-            if (this.innerContainer.Contains(item))
+            if (innerContainer.Contains(item))
             {
                 Thing outThing;
-                this.innerContainer.TryDrop(item, ThingPlaceMode.Near, out outThing);
+                innerContainer.TryDrop(item, ThingPlaceMode.Near, out outThing);
                 if (forbid) outThing.SetForbidden(true);
                 return true;
             }
