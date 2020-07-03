@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -10,8 +11,14 @@ namespace Libraries.Jobs
 
         public static IEnumerable<Toil> ReadBook(Pawn pawn, Book target)
         {
+            var toilOpenBook = Toils_General.Wait(3);
+
+            // reserve our book
+            yield return Toils_Reserve.Reserve(TargetIndex.A);
+            
             // goto our book
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+
             // pick it up, slowly (ish)
             yield return Toils_General.Wait(6).FailOnForbidden(TargetIndex.A).FailOnCannotTouch(TargetIndex.A, PathEndMode.Touch).WithProgressBarToilDelay(TargetIndex.A);
 
@@ -19,10 +26,12 @@ namespace Libraries.Jobs
             pawn.CurJob.count = 1;
             yield return Toils_Haul.TakeToInventory(TargetIndex.A, () => 1);
 
-            yield return FindAdjacentReadSurface(pawn, target.GetRoom()).FailOnDestroyedOrNull(TargetIndex.B);
+            yield return FindAdjacentReadSurface(pawn, target.GetRoom()).FailOnForbidden(TargetIndex.B);
+
+            yield return Toils_Jump.JumpIfTargetDespawnedOrNull(TargetIndex.B, toilOpenBook);
 
             // open our book
-            yield return Toils_General.Wait(3).WithProgressBarToilDelay(TargetIndex.B);
+            yield return toilOpenBook;
         }
 
         public static Toil DropBook(Pawn p)
@@ -44,7 +53,7 @@ namespace Libraries.Jobs
 
         private static Toil FindAdjacentReadSurface(Pawn p, Room room)
         {
-            foreach (var thing in room.UnReservedSittableBuildings())
+            foreach (var thing in room.SittableBuildings())
             {
                 if (p.CanReserve(thing))
                 {

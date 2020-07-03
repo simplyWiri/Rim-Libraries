@@ -1,6 +1,7 @@
 ﻿using Libraries.Books;
 using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -10,7 +11,7 @@ namespace Libraries.Jobs
     {
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            return pawn.Map.listerThings.AllThings.FindAll(x => x is Book_Skill);
+            return pawn.Map.listerThings.AllThings.FindAll(x => x is Book_Skill).Where(thing => pawn.CanReserve(thing));
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

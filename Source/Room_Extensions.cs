@@ -10,7 +10,7 @@ namespace Libraries
     {
         public static Dictionary<Room, Tuple<List<Thing>, List<Thing>>> CachedValues = new Dictionary<Room, Tuple<List<Thing>, List<Thing>>>();
 
-        public static List<Thing> UnReservedSittableBuildings(this Room room)
+        public static List<Thing> SittableBuildings(this Room room)
         {
             if (!CachedValues.ContainsKey(room) || CachedValues[room].Item1.Count != room.ContainedAndAdjacentThings.Count)
             {

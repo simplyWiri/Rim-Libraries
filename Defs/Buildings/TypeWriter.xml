@@ -7,7 +7,7 @@
     <description>A workbench for tailoring clothes by hand. Works at 50% of the speed of an electric tailoring bench.</description>
     <thingClass>Libraries.Buildings.Building_TypeWriter</thingClass>
     <graphicData>
-      <texPath>Buildings/bench</texPath>
+      <texPath>Buildings/StudyTable</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(3.5,1.5)</drawSize>
       <shaderType>CutoutComplex</shaderType>
