@@ -25,22 +25,26 @@ namespace Libraries
                     return list;
                 } else
                 {
-                    var listThings = room.ContainedAndAdjacentThings;
-                    var listseats = listThings.Where(t => t.def?.building?.isSittable ?? false).OrderByDescending(t => t.def.GetStatValueAbstract(StatDefOf.Comfort));
+                    getSeats(out var seats);
 
-                    CachedValues[room.ID] = listseats;
+                    CachedValues[room.ID] = seats;
                     cachedTimes[room.ID] = t;
-                    return listseats;
+                    return seats;
                 }
             } else
             {
-                var listThings = room.ContainedAndAdjacentThings;
-                var listseats = listThings.Where(t => t.def?.building?.isSittable ?? false).OrderByDescending(t => t.def.GetStatValueAbstract(StatDefOf.Comfort));
+                getSeats(out var seats);
 
-                CachedValues.Add(room.ID, listseats);
+                CachedValues.Add(room.ID, seats);
                 cachedTimes.Add(room.ID, Time.time);
 
-                return listseats;
+                return seats;
+            }
+
+            void getSeats(out IEnumerable<Thing> seats)
+            {
+                var listThings = room.ContainedAndAdjacentThings;
+                seats = listThings.Where(t => t.def?.building?.isSittable ?? false).OrderByDescending(t => t.def.GetStatValueAbstract(StatDefOf.Comfort));
             }
         }
     }
