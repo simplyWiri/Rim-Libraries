@@ -75,18 +75,13 @@ namespace Libraries.Buildings
         public void ProcessInput()
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
-            Map map = Map;
             if (innerContainer.Count != 0)
             {
                 foreach (Book current in innerContainer)
                 {
-                    string text = current.Label;
-                    List<FloatMenuOption> arg_121_0 = list;
                     Func<Rect, bool> extraPartOnGUI = (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, current);
-                    arg_121_0.Add(new FloatMenuOption(text, delegate
-                    {
-                        TryDrop(current);
-                    }, MenuOptionPriority.Default, null, null, 29f, extraPartOnGUI, null));
+
+                    list.Add(new FloatMenuOption(current.Label, () => TryDrop(current), MenuOptionPriority.Default, null, null, 29f, extraPartOnGUI, null));
                 }
             }
             Find.WindowStack.Add(new FloatMenu(list));
