@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <EffecterDef>
+        <defName>RL_BookEffecter</defName>
+        <children>
+            <li>
+                <subEffecterClass>Libraries.SubEffecter_BookSymbol</subEffecterClass>
+                <moteDef>RL_MoteBook</moteDef>
+            </li>
+        </children>
+    </EffecterDef>
+
+</Defs>

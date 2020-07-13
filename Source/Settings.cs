@@ -101,10 +101,8 @@ namespace Libraries
             Text.Font = GameFont.Tiny;
 
             var rect = listing.GetRect(Text.LineHeight);
-            if(percent)
-                Widgets.Label(rect, $"{label}: {value * 100}%");
-            else
-                Widgets.Label(rect, $"{label}: {value:0.00}");
+            if(percent) Widgets.Label(rect, $"{label}: {value * 100}%");
+            else Widgets.Label(rect, $"{label}: {value:0.00}");
             rect = listing.GetRect(Text.LineHeight);
 
             var minWidth = min.ToString().GetWidthCached();

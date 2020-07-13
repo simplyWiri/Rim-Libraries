@@ -11,7 +11,7 @@ namespace Libraries.Jobs
     {
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            return pawn.Map.listerThings.AllThings.FindAll(x => x is Book_Skill).Where(thing => pawn.CanReserve(thing));
+            return pawn.Map.GetComponent<MapComponent_Library>().books.Where(book => book is Book_Skill && pawn.CanReserve(book));
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

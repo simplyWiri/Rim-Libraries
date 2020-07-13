@@ -8,9 +8,10 @@ namespace Libraries.Books
         private SkillDef skillDef;
         public SkillDef SkillDef => skillDef;
 
-        public float CurrentMultiplier()
+        public float CurrentMultiplier;
+        public static float GetMultiplier(Book_Skill book)
         {
-            switch (CompQuality.Quality)
+            switch (book.CompQuality.Quality)
             {
                 case QualityCategory.Awful: return .5f;
                 case QualityCategory.Poor: return .6f;
@@ -27,6 +28,12 @@ namespace Libraries.Books
         public Book_Skill()
         {
             skillDef = SkillDefOf.Artistic;
+        }
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            CurrentMultiplier = GetMultiplier(this);
         }
 
     }

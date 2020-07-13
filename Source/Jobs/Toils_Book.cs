@@ -26,7 +26,7 @@ namespace Libraries.Jobs
             pawn.CurJob.count = 1;
             yield return Toils_Haul.TakeToInventory(TargetIndex.A, () => 1);
 
-            yield return FindAdjacentReadSurface(pawn, target.GetRoom()).FailOnDestroyedNullOrForbidden(TargetIndex.B);
+            yield return FindAdjacentReadSurface(pawn, target.GetRoom()).FailOnForbidden(TargetIndex.B);
 
             yield return Toils_Jump.JumpIfTargetDespawnedOrNull(TargetIndex.B, toilOpenBook);
 

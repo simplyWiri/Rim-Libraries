@@ -20,9 +20,10 @@ namespace Libraries.Jobs
             }
 
             Toil toil = new Toil();
+            var learnRate = 0.07f * BookTarget.CurrentMultiplier * Libraries.Settings.SkillBookSkillGainMultiplier;
             toil.tickAction = () =>
             {
-                pawn.skills.Learn(BookTarget.SkillDef, 0.07f * BookTarget.CurrentMultiplier() * Libraries.Settings.SkillBookSkillGainMultiplier);
+                pawn.skills.Learn(BookTarget.SkillDef, learnRate);
 
                 curReadTicks++;
                 if (curReadTicks > defaultReadTicks)
@@ -32,6 +33,7 @@ namespace Libraries.Jobs
             toil.defaultCompleteMode = ToilCompleteMode.Never;
             toil.activeSkill = () => SkillDefOf.Intellectual;
             toil.WithProgressBar(TargetIndex.A, () => curReadTicks / (float)defaultReadTicks);
+            toil.WithEffect(Library_SubEffecterDefOf.RL_BookEffecter, TargetIndex.A);
 
             yield return toil;
 

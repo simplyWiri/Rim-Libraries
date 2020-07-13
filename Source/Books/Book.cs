@@ -8,7 +8,7 @@ namespace Libraries
     public class Book : ThingWithComps
     {
         // this will be overriden as a getter in child classes
-        private Building parent = null;   
+        //private Building parent = null;   
 
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)

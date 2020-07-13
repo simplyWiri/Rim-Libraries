@@ -35,7 +35,7 @@ namespace Libraries.Jobs
                 if (BookTarget is Book_Skill)
                 {
                     var skillbook = BookTarget as Book_Skill;
-                    actor.skills.Learn(skillbook.SkillDef, 0.07f * skillbook.CurrentMultiplier() * Libraries.Settings.SkillBookSkillGainMultiplier);
+                    actor.skills.Learn(skillbook.SkillDef, 0.07f * skillbook.CurrentMultiplier * Libraries.Settings.SkillBookSkillGainMultiplier);
                 }
 
                 curReadTicks++;
@@ -51,6 +51,7 @@ namespace Libraries.Jobs
                 JoyUtility.TryGainRecRoomThought(pawn);
             });
 
+            toil.WithEffect(Library_SubEffecterDefOf.RL_BookEffecter, TargetIndex.A);
             toil.defaultCompleteMode = ToilCompleteMode.Never;
 
             yield return toil;

@@ -114,6 +114,7 @@
     <Compile Include="Rooms\RoomStatWorker_Grandeur.cs" />
     <Compile Include="Rooms\RoomStatWorker_Study.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="SubEffecter_BookSymbol.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

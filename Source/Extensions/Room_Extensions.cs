@@ -3,27 +3,45 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace Libraries
 {
     public static class Room_Extensions
     {
-        public static Dictionary<int, Tuple<List<Thing>, IEnumerable<Thing>>> CachedValues = new Dictionary<int, Tuple<List<Thing>, IEnumerable<Thing>>>();
-
+        public static Dictionary<int, IEnumerable<Thing>> CachedValues = new Dictionary<int, IEnumerable<Thing>>();
+        public static Dictionary<int, float> cachedTimes = new Dictionary<int, float>();
         public static IEnumerable<Thing> SittableBuildings(this Room room)
         {
             if (room == null) return null;
 
-            if (!CachedValues.ContainsKey(room.ID) || CachedValues[room.ID].Item1.Count != room.ContainedAndAdjacentThings.Count)
+            var t = Time.time;
+
+            if(CachedValues.TryGetValue(room.ID, out var list))
+            {
+                if(t - cachedTimes[room.ID] < 10)
+                {
+                    return list;
+                } else
+                {
+                    var listThings = room.ContainedAndAdjacentThings;
+                    var listseats = listThings.Where(t => t.def?.building?.isSittable ?? false).OrderByDescending(t => t.def.GetStatValueAbstract(StatDefOf.Comfort));
+
+                    CachedValues[room.ID] = listseats;
+                    cachedTimes[room.ID] = t;
+                    return listseats;
+                }
+            } else
             {
                 var listThings = room.ContainedAndAdjacentThings;
                 var listseats = listThings.Where(t => t.def?.building?.isSittable ?? false).OrderByDescending(t => t.def.GetStatValueAbstract(StatDefOf.Comfort));
 
-                CachedValues.SetOrAdd(room.ID, new Tuple<List<Thing>, IEnumerable<Thing>>(listThings, listseats));
-            }
+                CachedValues.Add(room.ID, listseats);
+                cachedTimes.Add(room.ID, Time.time);
 
-            return CachedValues[room.ID].Item2;
+                return listseats;
+            }
         }
     }
 }
