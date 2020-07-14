@@ -93,6 +93,7 @@ namespace Libraries
             Widgets.Label(rect, label);
             Text.Anchor = anchor;
         }
+
         private void LabeledSliderFloat(Listing_Standard listing, string label, ref float value, float min, float max, bool percent = false)
         {
 

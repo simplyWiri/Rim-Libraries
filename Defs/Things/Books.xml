@@ -17,9 +17,9 @@
         <compClass>CompQuality</compClass>
       </li>
       <li Class="CompProperties_Art">
-        <nameMaker>NamerArtFurniture</nameMaker>
+        <nameMaker>RL_SkillBook_ArtisticNamer</nameMaker>
         <descriptionMaker>ArtDescription_Furniture</descriptionMaker>
-        <minQualityForArtistic>Good</minQualityForArtistic>
+        <minQualityForArtistic>Awful</minQualityForArtistic>
       </li>
     </comps>
     <alwaysHaulable>true</alwaysHaulable>

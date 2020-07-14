@@ -26,6 +26,7 @@ namespace Libraries
 			{
 				interactMote = (Mote)ThingMaker.MakeThing(def.moteDef);
 				interactMote.exactPosition = A.Cell.ToVector3();
+				interactMote.Scale = .65f;
 				GenSpawn.Spawn(interactMote, A.Cell, A.Map);
 			}
 		}

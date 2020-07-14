@@ -1,0 +1,67 @@
+<Defs>
+
+    <!-- General heads up
+        ~ Don't leave trailing whitespace, it will error out
+        <rulesFiles> .... </rulesFiles> are where you declare your input .txt
+
+        for english, this points to
+        Languages/English/Strings/Words/Nouns/
+     -->
+
+    <RulePackDef>
+        <defName>RL_SkillBookBase</defName>
+        <rulePack>
+            <rulesFiles>
+                <!-- this points to Languages/xxx/Strings/Words/Nouns/Title_SkillBook.txt -->
+                <li>BookTitle->Words/Nouns/Title_SkillBook</li>
+            </rulesFiles>
+            <rulesStrings>
+                <li>book_name_numeric->[Digit]</li>
+                <li>book_name_numeric->[Digit][Digit]</li>
+                <li>book_name_numeric->[Digit][Digit][Digit]</li>
+                <li>book_name_numeric->[RomanNumeral]</li>
+                <li>book_name_numeric->[RomanNumeral][Digit]</li>
+                <li>book_name_numeric->[Digit][RomanNumeral]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+
+    <RulePackDef>
+        <defName>RL_Skill_Artistic_Utility</defName>
+        <rulePack>
+            <rulesFiles>
+                <li>SkillCharacteristic->Words/Nouns/Skill_Artistic_Characteristic</li>
+                <li>SkillDescription->Words/Nouns/Skill_Artistic_Description</li>
+            </rulesFiles>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>RL_SkillBook_ArtisticNamer</defName>
+        <include>
+            <li>RL_SkillBookBase</li>
+            <li>RL_Skill_Artistic_Utility</li>
+        </include>
+        <rulePack>
+            <rulesStrings>
+
+                <!-- Numeric -->
+
+                <li>r_art_name->No. [book_name_numeric] concerning [SkillCharacteristic]</li>
+                <li>r_art_name->No. [book_name_numeric] regarding mastery of [SkillCharacteristic]</li>
+
+                <li>r_art_name->Volume [book_name_numeric] detailing [SkillCharacteristic]</li>
+
+                <!-- General -->
+
+                <li>r_art_name->[BookTitle] detailing methods to perfect [SkillDescription]</li>
+                <li>r_art_name->[BookTitle] explaining the intricacies behind [SkillDescription]</li>
+                <li>r_art_name->[BookTitle] exploring various approaches to implement [SkillDescription]</li>
+
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+
+</Defs>

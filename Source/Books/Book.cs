@@ -27,7 +27,7 @@ namespace Libraries
         {
             get
             {
-                return base.Label;
+                return CompArt?.Title ?? base.Label;
             }
         }
     }
