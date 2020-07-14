@@ -23,4 +23,11 @@
 		<joyKind>Gaming_Cerebral</joyKind>
 	</JobDef>
 
+	<JobDef>
+		<defName>RL_CleanShelf</defName>
+		<driverClass>Libraries.Jobs.JobDriver_CleanShelf</driverClass>
+		<reportString>sweeping the dust off of TargetA.</reportString>
+		<playerInterruptible>true</playerInterruptible>
+	</JobDef>
+
 </Defs>

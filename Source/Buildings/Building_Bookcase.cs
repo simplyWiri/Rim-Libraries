@@ -22,20 +22,27 @@ namespace Libraries.Buildings
             Map.GetComponent<MapComponent_Library>().DeRegisterBookshelf(this);
             base.DeSpawn(mode);
         }
+
         public void AddDust(float dustAmount)
         {
-            dust += dust * Libraries.Settings.DustIncrementMultiplier;
+            dust += dustAmount * Libraries.Settings.DustIncrementMultiplier;
         }
 
-        public void CleanDust(out float timeTaken)
+        public void CleanDust(out int timeTaken)
         {
-            // 5 ticks per full number of dust, whatever that ends up being
-            timeTaken = dust * 5;
+            // the dust threshold of 65 will take just less than 1440 (4s @ 4x) ticks to complete
+            // todo make a curve
+            timeTaken = Mathf.CeilToInt(dust) * 22;
+        }
+
+        public void ClearDust()
+        {
+            dust = 0;
         }
 
         public bool Dusty()
         {
-            return !Libraries.Settings.DustyBookshelves || dust > Libraries.Settings.DustyBookshelfThreshold;
+            return !Libraries.Settings.DustyBookshelves || dust > 65;
         }
 
         public override string GetInspectString()
@@ -49,6 +56,7 @@ namespace Libraries.Buildings
                 s.AppendLine($"Contains {innerContainer.Count}");
 
             s.AppendLine($"Capacity of {CompStorageGraphic.Props.fullthreshold}");
+            s.AppendLine($"Current amount of dust {dust}");
             return s.ToString().TrimEndNewlines();
         }
 

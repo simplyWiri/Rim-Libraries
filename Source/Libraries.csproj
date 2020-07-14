@@ -87,6 +87,7 @@
     <Compile Include="Buildings\Building_Altar.cs" />
     <Compile Include="Buildings\Building_Bookcase.cs" />
     <Compile Include="Buildings\Building_InternalHolder.cs" />
+    <Compile Include="Buildings\Building_LibraryCenterpiece.cs" />
     <Compile Include="Buildings\Building_Pedestal.cs" />
     <Compile Include="Buildings\Building_StudyTable.cs" />
     <Compile Include="Buildings\Building_TypeWriter.cs" />
@@ -96,12 +97,15 @@
     <Compile Include="Harmony\H_TimeAssignmentSelector.cs" />
     <Compile Include="Harmony\H_WorkGiver_ConstructFinishFrames.cs" />
     <Compile Include="Harmony\H_WorkGiver_DoBill.cs" />
+    <Compile Include="ITab_LibraryCenter.cs" />
+    <Compile Include="Jobs\JobDrivers\JobDriver_CleanShelf.cs" />
     <Compile Include="Jobs\JobDrivers\JobDriver_HaulToShelf.cs" />
     <Compile Include="Jobs\JobDrivers\JobDriver_JoyReadBook.cs" />
     <Compile Include="Jobs\JobDrivers\JobDriver_ReadSkillBook.cs" />
     <Compile Include="Jobs\JobGivers\JobGiver_SkillBook.cs" />
     <Compile Include="Jobs\Library_JobDefOf.cs" />
     <Compile Include="Jobs\Toils_Book.cs" />
+    <Compile Include="Jobs\WorkGivers\WorkGiver_CleanShelf.cs" />
     <Compile Include="Jobs\WorkGivers\WorkGiver_HaulBookToShelf.cs" />
     <Compile Include="Jobs\WorkGivers\WorkGiver_ReadSkillBook.cs" />
     <Compile Include="Jobs\JoyGivers\JoyGiver_ReadBook.cs" />

@@ -9,6 +9,10 @@ namespace Libraries.Jobs
     public class JobDriver_JoyReadBook : JobDriver
     {
         private Book BookTarget => job.GetTarget(TargetIndex.A).Thing as Book;
+
+        // for skill books
+        private SkillDef curSkill;
+        private float curMultiplier;
         private float defaultReadTicks => 1500;
         private float curReadTicks = 0;
 
@@ -17,9 +21,8 @@ namespace Libraries.Jobs
             this.FailOnDestroyedOrNull(TargetIndex.A);
 
             foreach (var t in Toils_Book.ReadBook(pawn, BookTarget))
-            {
                 yield return t;
-            }
+            
 
             var toil = new Toil();
             toil.AddPreInitAction(() =>
@@ -28,23 +31,31 @@ namespace Libraries.Jobs
                 JoyUtility.JoyTickCheckEnd(pawn, JoyTickFullJoyAction.EndJob);
             });
 
-            toil.tickAction = () =>
+            if (BookTarget is Book_Skill)
             {
-                Pawn actor = pawn;
-
-                if (BookTarget is Book_Skill)
+                var skillBook = BookTarget as Book_Skill;
+                curSkill = skillBook.SkillDef;
+                curMultiplier = skillBook.CurrentMultiplier;
+                toil.tickAction = () =>
                 {
-                    var skillbook = BookTarget as Book_Skill;
-                    actor.skills.Learn(skillbook.SkillDef, 0.07f * skillbook.CurrentMultiplier * Libraries.Settings.SkillBookSkillGainMultiplier);
-                }
+                    pawn.skills.Learn(curSkill, 0.07f * curMultiplier * Libraries.Settings.SkillBookSkillGainMultiplier);
 
-                curReadTicks++;
+                    curReadTicks++;
 
-                if (curReadTicks > job.def.joyDuration)
-                    ReadyForNextToil();
-                else
-                    JoyUtility.JoyTickCheckEnd(pawn);
-            };
+                    if (curReadTicks > job.def.joyDuration) ReadyForNextToil();
+                    else JoyUtility.JoyTickCheckEnd(pawn);
+                };
+            }
+            else
+            {
+                toil.tickAction = () =>
+                {
+                    curReadTicks++;
+
+                    if (curReadTicks > job.def.joyDuration) ReadyForNextToil();
+                    else JoyUtility.JoyTickCheckEnd(pawn);
+                };
+            }
 
             toil.AddFinishAction(() =>
             {

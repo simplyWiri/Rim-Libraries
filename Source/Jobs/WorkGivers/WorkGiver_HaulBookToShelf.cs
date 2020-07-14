@@ -40,17 +40,16 @@ namespace Libraries.Jobs
             var parms = TraverseParms.For(p, Danger.Deadly, TraverseMode.ByPawn, false);
             Building_InternalStorage closest = null;
 
-            foreach (var thing in p.Map.GetComponent<MapComponent_Library>().bookcases)
+            foreach (var thing in p.Map.GetComponent<MapComponent_Library>().AllShelves)
             {
-                if (!thing.Value.Spawned) continue;
-                if (!(p.CanReserve(thing.Value) && thing.Value.Accepts(t))) continue;
+                if (!thing.Spawned) continue;
+                if (!(p.CanReserve(thing) && thing.Accepts(t))) continue;
 
-                float sqr = (t.Position - thing.Key).LengthHorizontalSquared;
+                float sqr = (t.Position - thing.Position).LengthHorizontalSquared;
                 if (!(sqr < closestDst)) continue;
 
-                if (p.Map.reachability.CanReach(t.Position, thing.Value, PathEndMode.ClosestTouch, parms))
-                    closest = thing.Value;
-
+                if (p.Map.reachability.CanReach(t.Position, thing, PathEndMode.ClosestTouch, parms))
+                    closest = thing;
             }
 
             return closest;

@@ -2,6 +2,7 @@
 using Libraries.Buildings;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.Windows.WebCam;
 using Verse;
 using Verse.AI;
@@ -14,7 +15,11 @@ namespace Libraries
         private HashSet<Book_Research> researchBooks = new HashSet<Book_Research>();
 
         // for access to bookshelves
-        public Dictionary<IntVec3, Building_Bookcase> bookcases = new Dictionary<IntVec3, Building_Bookcase>();
+        private List<Building_Bookcase> shelves = new List<Building_Bookcase>();
+
+        public IEnumerable<Building_Bookcase> AllShelves => shelves;
+        public IEnumerable<Building_Bookcase> DustyShelves => shelves.Where(shelf => shelf.Dusty());
+        
 
         public HashSet<Book> books = new HashSet<Book>();
         public bool BookHaulablesDirty = false;
@@ -33,10 +38,24 @@ namespace Libraries
             }
         }
 
-
-
         public MapComponent_Library(Map map) : base(map)
         {
+        }
+
+        public override void MapComponentTick()
+        {
+            base.MapComponentTick();
+            var ticks = GenTicks.TicksAbs;
+
+            if (ticks % 15 != 0) return;
+
+            if (ticks % 250 == 0)
+            {
+                foreach (var shelf in shelves)
+                {
+                    shelf.AddDust(Rand.Range(0.001f, 0.01f) * 10);
+                }
+            }
         }
 
         public Book RandomBookForRecreation(Pawn p)
@@ -61,7 +80,7 @@ namespace Libraries
             books.Remove(book);
         }
 
-        public void RegisterBookshelf(Building_Bookcase shelf) => bookcases.Add(shelf.Position, shelf);
-        public void DeRegisterBookshelf(Building_Bookcase shelf) => bookcases.Remove(shelf.Position);
+        public void RegisterBookshelf(Building_Bookcase shelf) => shelves.Add(shelf);
+        public void DeRegisterBookshelf(Building_Bookcase shelf) => shelves.Remove(shelf);
     }
 }

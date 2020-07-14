@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingDef ParentName="FurnitureBase">
+        <defName>RL_CentralPillar</defName>
+        <label>central pillar</label>
+        <description>The centerpiece of a library</description>
+        <thingClass>Libraries.Buildings.Building_LibraryCenterpiece</thingClass>
+        <graphicData>
+            <graphicClass>Graphic_Random</graphicClass>
+            <texPath>Things/Building/Furniture/SteleLarge</texPath>
+            <drawSize>(4,4)</drawSize>
+            <drawOffset>(0,0,0.05)</drawOffset>
+            <shadowData>
+                <volume>(1.5, 0.6, 1.5)</volume>
+                <offset>(0, 0, -0.15)</offset>
+            </shadowData>
+            <damageData>
+                <rect>(0.1,0.1,1.9,1.9)</rect>
+            </damageData>
+        </graphicData>
+        <castEdgeShadows>true</castEdgeShadows>
+        <staticSunShadowHeight>0.20</staticSunShadowHeight>
+        <costStuffCount>75</costStuffCount>
+        <stuffCategories>
+            <li>Stony</li>
+        </stuffCategories>
+        <altitudeLayer>Building</altitudeLayer>
+        <fillPercent>0.5</fillPercent>
+        <useHitPoints>True</useHitPoints>
+        <statBases>
+            <WorkToBuild>2000</WorkToBuild>
+            <MaxHitPoints>180</MaxHitPoints>
+            <Flammability>1.0</Flammability>
+            <WorkTableWorkSpeedFactor>0.5</WorkTableWorkSpeedFactor>
+            <Mass>30</Mass>
+        </statBases>
+        <size>(4,4)</size>
+        <designationCategory>Production</designationCategory>
+        <passability>PassThroughOnly</passability>
+        <pathCost>70</pathCost>
+        <surfaceType>Item</surfaceType>
+        <inspectorTabs>
+            <li>Libraries.ITab_LibraryCenter</li>
+        </inspectorTabs>
+    </ThingDef>
+
+</Defs>

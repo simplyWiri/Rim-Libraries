@@ -11,6 +11,7 @@ namespace Libraries.Rooms
     [DefOf]
     public static class RoomsDefOf
     {
+        public static RoomRoleDef RL_Library;
         public static RoomStatDef RL_Grandeur;
     }
 }

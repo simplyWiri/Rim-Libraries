@@ -28,4 +28,17 @@
         </requiredCapacities>
     </WorkGiverDef>
 
+    <WorkGiverDef>
+        <defName>RL_CleanShelves</defName>
+        <label>clean dust off shelves</label>
+        <giverClass>Libraries.Jobs.WorkGiver_CleanShelf</giverClass>
+        <workType>Cleaning</workType>
+        <verb>dusting</verb>
+        <gerund>sweeping dust</gerund>
+        <priorityInType>10</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </WorkGiverDef>
+
 </Defs>

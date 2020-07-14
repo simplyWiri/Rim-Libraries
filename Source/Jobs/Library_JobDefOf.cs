@@ -8,5 +8,6 @@ namespace Libraries.Jobs
     {
         public static JobDef RL_ReadSkillBook;
         public static JobDef RL_HaulBookToShelf;
+        public static JobDef RL_CleanShelf;
     }
 }
